@@ -1,0 +1,80 @@
+Activity 1:
+
+1. Number 75 from base 10 to base 2
+
+75/2 = 37 (1)
+37/2=18 (1)
+18/2=9 (0)
+9/2=4 (1)
+4/2=2 (0)
+2/2=1 (0)
+1/2=0 (1)
+
+Transformed: 1101001
+
+2. Number 110111011 from base 2 to base 10
+
+1	28	256
+1	27	128
+0	26	0
+1	25	32
+1	24	16
+1	23	8
+0	22	0
+1	21	2
+1	20	1
+
+Transfromed: 1 + 2 + 0 + 8 + 16 + 32 + 0 + 128 + 256 = 443 
+Answer: 443
+
+Activity 2:
+1. Number 75 from base 10 to base 8
+75/8=9 (3)
+9/8=1 (1)
+1/8=0 (1)
+
+Transformed: 113
+
+2. Number 1346742 from base 8 to base 10
+
+1	86	262144
+3	85	98304
+4	84	16384
+6	83	3072
+7	82	448
+4	81	32
+2	80	2
+
+Transformed: 2 + 32 + 448 + 3072 + 16384 + 98304 + 262144  = 380386 
+Answer = 380386
+
+Activity 3:
+1. Number 75 from base 10 to base 16
+75/16=4 (11): Hexadecimal: B
+4/16=0 (4)
+
+Transformed: 4B
+
+2. Number 64FEA from base 16 to 10
+6	164	230496
+4	163	16384
+F (15)	162	3840
+E (14)	161	224
+A (10)	160	10
+
+Transformed: 10 + 224 + 3840 + 16384 + 230496 = 250954 
+Answer = 250954
+
+Activity 4: 
+function DecimalToBinary(decimalnumber);
+
+if decimalnumber = 0
+return 0
+
+binarystring = ""
+
+while decimalnumber > 0
+remainder = decimalnumber mod 2
+decimalnumber = decimalnumber div 2 // divide decimalnumber to 2 to update for next one
+
+return binarystring
