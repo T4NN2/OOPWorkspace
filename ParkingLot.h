@@ -16,6 +16,7 @@ public:
     int getCount() const;
     void parkVehicle(Vehicle* v);
     void unparkVehicle(int id);
+    int countOverstayingVehicles(int maxParkingDuration) const;
 };
 
 #endif // PARKINGLOT_H
