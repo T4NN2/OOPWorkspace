@@ -64,9 +64,11 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
+    int sum = 0;
     for (int i = 0; i < myRecords.size(); i++) {
-        cout << myRecords[i] << endl;
+        sum += myRecords[i];
     }
+    cout << sum << endl;
 
 
     return 0;
