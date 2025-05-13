@@ -20,15 +20,32 @@ public:
     void read(Records &records) {
         _file.open(_filename, ios::in);
 
-        if (_file.is_open())
-        { 
+        try {
+            if (!_file.is_open()) {
+                throw runtime_error("File could not be opened");
+            }
+
             string line;
             while (getline(_file, line)) {
-                int value = stoi(line);
-                records.push_back(value);
-            } 
-            _file.close();
+                try {
+                    int value = stoi(line);
+                    records.push_back(value);
+                } catch (const invalid_argument&) {
+                    cout << "invalid_argument error" << endl;
+                    throw;
+                } catch (const out_of_range&) {
+                    cout << "out_of_range error" << endl;
+                    throw;
+                }
+            }
+        } catch (const runtime_error&) {
+            cout << "runtime_error error" << endl;
+            throw;
+        } catch (const exception& e) {
+            cout << "exception error" << endl;
+            throw;
         }
+        _file.close();
     }
 };
 
@@ -40,13 +57,16 @@ int main(int argc, char* argv[]) {
 
     RecordsManager recordM(filename); 
         
-    recordM.read(myRecords);
-
-    int sum = 0;
-    for (int i = 0; i < myRecords.size(); i++) {
-        sum += myRecords[i];
+    try {
+        recordM.read(myRecords);
+    } catch (const exception& e) {
+        cout << "Exception caught in main: " << e.what() << endl;
+        return 1;
     }
-    cout << sum << endl;
+
+    for (int i = 0; i < myRecords.size(); i++) {
+        cout << myRecords[i] << endl;
+    }
 
 
     return 0;
