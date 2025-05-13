@@ -20,30 +20,22 @@ public:
     void read(Records &records) {
         _file.open(_filename, ios::in);
 
-        try {
-            if (!_file.is_open()) {
-                throw runtime_error("File could not be opened");
-            }
+        if (!_file.is_open()) {
+            throw runtime_error("File could not be opened");
+        }
 
-            string line;
-            while (getline(_file, line)) {
-                try {
-                    int value = stoi(line);
-                    records.push_back(value);
-                } catch (const invalid_argument&) {
-                    cout << "invalid_argument error" << endl;
-                    throw;
-                } catch (const out_of_range&) {
-                    cout << "out_of_range error" << endl;
-                    throw;
-                }
+        string line;
+        while (getline(_file, line)) {
+            try {
+                int value = stoi(line);
+                records.push_back(value);
+            } catch (const invalid_argument&) {
+                cout << "Warning: invalid input skipped: " << line << endl;
+                // skip invalid line
+            } catch (const out_of_range&) {
+                cout << "Warning: out of range input skipped: " << line << endl;
+                // skip out of range line
             }
-        } catch (const runtime_error&) {
-            cout << "runtime_error error" << endl;
-            throw;
-        } catch (const exception& e) {
-            cout << "exception error" << endl;
-            throw;
         }
         _file.close();
     }
