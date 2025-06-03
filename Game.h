@@ -34,7 +34,7 @@ public:
 
     void gameLoop(int maxIterations, double mineDistanceThreshold) {
         for (int it = 0; it < maxIterations; ++it) {
-            std::cout << "Iteration: " << it + 1 << "\n";
+            // std::cout << "Iteration: " << it + 1 << "\n";
 
             // Move ships
             for (auto* e : entities) {
@@ -68,7 +68,7 @@ public:
             }
 
             if (allShipsDestroyed) {
-                std::cout << "All ships destroyed. Game Over.\n";
+                // std::cout << "All ships destroyed. Game Over.\n";
                 break;
             }
         }
