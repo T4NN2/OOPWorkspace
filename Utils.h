@@ -1,13 +1,13 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <tuple>
+#include <utility>
 #include <cmath>
 #include <random>
 
 class Utils {
 public:
-    static std::tuple<int, int> generateRandomPos(int gridWidth, int gridHeight) {
+    static std::pair<int, int> generateRandomPos(int gridWidth, int gridHeight) {
         static std::random_device rd;
         static std::mt19937 gen(rd());
         std::uniform_int_distribution<> disW(0, gridWidth - 1);
@@ -15,9 +15,9 @@ public:
         return {disW(gen), disH(gen)};
     }
 
-    static double calculateDistance(std::tuple<int, int> pos1, std::tuple<int, int> pos2) {
-        int x1 = std::get<0>(pos1), y1 = std::get<1>(pos1);
-        int x2 = std::get<0>(pos2), y2 = std::get<1>(pos2);
+    static double calculateDistance(std::pair<int, int> pos1, std::pair<int, int> pos2) {
+        int x1 = pos1.first, y1 = pos1.second;
+        int x2 = pos2.first, y2 = pos2.second;
         return std::sqrt((x2 - x1)*(x2 - x1) + (y2 - y1)*(y2 - y1));
     }
 };
